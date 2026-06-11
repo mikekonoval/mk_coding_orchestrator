@@ -58,12 +58,17 @@ command -v codex || { echo "ERROR: codex not found. Install: npm install -g @ope
 
 **Рецепт:**
 ```bash
-codex exec -s read-only "$(cat <<'PROMPT'
+# Записать промпт с заполненными плейсхолдерами во временный файл
+cat > /tmp/review-prompt.txt << 'EOF'
 [промпт из references/prompts/spec-review.md | plan-review.md | code-review.md
  с заполненными плейсхолдерами]
-PROMPT
-)"
+EOF
+
+# Передать промпт через stdin (НЕ через аргумент или heredoc-подстановку)
+codex exec -s read-only < /tmp/review-prompt.txt 2>&1
 ```
+
+**Важно:** передавать промпт через `< /tmp/file` (stdin redirect), а не через `"$(cat << 'HEREDOC')"` — heredoc-подстановка в длинных промптах может зависнуть.
 
 Флаги:
 - `-s read-only` — обязательно: ревьюер читает репозиторий, но не изменяет его
