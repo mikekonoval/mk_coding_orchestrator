@@ -121,7 +121,8 @@ PROMPT
 Самый чистый headless-транспорт DeepSeek: ключ уже в opencode, есть read-only агент `plan`, промпт через stdin. Полный рецепт и проверка доступности — в `spawn-recipes.md` («Спавн opencode+DeepSeek-ревьюера»).
 
 ```bash
-opencode run --agent plan -m deepseek/deepseek-v4-pro < /tmp/review-prompt.txt 2>&1
+# $PROMPT — уникальный файл волны из mktemp (см. spawn-recipes), не фиксированное имя
+opencode run --agent plan -m deepseek/deepseek-v4-pro < "$PROMPT" 2>&1
 ```
 
 В отличие от A/B не требует отдельной настройки `~/.deepcode/settings.json` — авторизация DeepSeek живёт в opencode (`opencode auth list`).

@@ -62,17 +62,22 @@ command -v codex || { echo "ERROR: codex not found. Install: npm install -g @ope
 
 **Рецепт:**
 ```bash
-# Записать промпт с заполненными плейсхолдерами во временный файл
-cat > /tmp/review-prompt.txt << 'EOF'
+# Уникальный файл на волну (mktemp) — параллельные волны не затирают друг друга
+PROMPT=$(mktemp "${TMPDIR:-/tmp}/review-prompt.XXXXXX")
+
+# Записать промпт с заполненными плейсхолдерами
+cat > "$PROMPT" << 'EOF'
 [промпт из references/prompts/spec-review.md | plan-review.md | code-review.md
  с заполненными плейсхолдерами]
 EOF
 
 # Передать промпт через stdin (НЕ через аргумент или heredoc-подстановку)
-codex exec -s read-only < /tmp/review-prompt.txt 2>&1
+codex exec -s read-only < "$PROMPT" 2>&1
 ```
 
-**Важно:** передавать промпт через `< /tmp/file` (stdin redirect), а не через `"$(cat << 'HEREDOC')"` — heredoc-подстановка в длинных промптах может зависнуть.
+`$PROMPT` живёт на одну волну: его читает codex, а при fallback — тот же файл читает opencode (см. ниже). Не использовать фиксированное имя `/tmp/review-prompt.txt` — две одновременные волны затрут друг друга.
+
+**Важно:** передавать промпт через `< "$PROMPT"` (stdin redirect), а не через `"$(cat << 'HEREDOC')"` — heredoc-подстановка в длинных промптах может зависнуть.
 
 Флаги:
 - `-s read-only` — обязательно: ревьюер читает репозиторий, но не изменяет его
@@ -101,14 +106,14 @@ opencode auth list 2>/dev/null | grep -qi deepseek || { echo "ERROR: DeepSeek н
 
 **Рецепт:**
 ```bash
-# Промпт — в том же /tmp-файле, что и для codex (тот же контракт находок)
-opencode run --agent plan -m deepseek/deepseek-v4-pro < /tmp/review-prompt.txt 2>&1
+# Тот же $PROMPT, что создал codex-рецепт этой волны (mktemp, тот же контракт находок)
+opencode run --agent plan -m deepseek/deepseek-v4-pro < "$PROMPT" 2>&1
 ```
 
 Флаги:
 - `--agent plan` — обязательно: встроенный read-only агент opencode (read без write/edit). Аналог `-s read-only` у codex — ревьюер не изменяет репозиторий.
 - `-m deepseek/deepseek-v4-pro` — верхний ярус DeepSeek (правильно для ревью). Для спеки/плана допустим `deepseek/deepseek-reasoner`.
-- Промпт через `< /tmp/file` (stdin), как у codex — без shell-подстановки длинного текста.
+- Промпт через `< "$PROMPT"` (stdin), как у codex — без shell-подстановки длинного текста.
 
 **Проверено локально:** opencode 1.15.10, DeepSeek API авторизован, агент `plan` read-only, рабочая директория `/Users/mikekonoval/Desktop/skill-coding`. Смоук-тест (`printf ... | opencode run --agent plan -m deepseek/deepseek-chat`) вернул ответ.
 
