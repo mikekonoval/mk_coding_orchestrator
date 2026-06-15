@@ -16,7 +16,7 @@
 
 | | Основной режим | Запасной режим |
 |--|---|---|
-| Оркестратор | Claude Code (Fable 5) | Codex (gpt-5.5) |
+| Оркестратор | Claude Code (сильнейшая доступная) | Codex (gpt-5.5) |
 | Писатели (спека/план/код/**документация**) | Claude-агенты | Codex spawn_agent |
 | Ревьюер спеки/плана | `codex exec -s read-only` | DeepSeek ревьюер |
 | Ревьюер кода | `codex exec -s read-only` | DeepSeek ревьюер |

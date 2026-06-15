@@ -44,7 +44,7 @@ SP=$(ls -d ~/.claude/plugins/cache/claude-plugins-official/superpowers/*/ 2>/dev
 ```
 model: claude-haiku-4-5    # ярус 1
 model: claude-sonnet-4-6   # ярус 2
-model: claude-fable-5      # ярус 3
+model: <сильнейшая доступная Claude-модель>   # ярус 3 (флагман — конкретный id в model-routing.md)
 ```
 
 **Правило:** заспавненный агент не наследует скиллы основной сессии. Без явной передачи пути к SKILL.md формат артефакта будет произвольным.
@@ -140,7 +140,7 @@ opencode run --agent plan -m deepseek/deepseek-v4-pro < "$PROMPT" 2>&1
 
 ```
 description: "Кросс-модельный ревьюер [этапа]"
-model: claude-fable-5
+model: <сильнейшая доступная Claude-модель>   # ярус 3 (флагман — конкретный id в model-routing.md)
 prompt: |
   [промпт из references/prompts/ с заполненными плейсхолдерами]
 ```
