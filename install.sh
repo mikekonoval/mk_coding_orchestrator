@@ -2,8 +2,8 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SKILL_SRC="$SCRIPT_DIR/skills/roadmap-orchestrator"
-SKILL_NAME="roadmap-orchestrator"
+SKILL_SRC="$SCRIPT_DIR/skills/mk-coding-orchestrator"
+SKILL_NAME="mk-coding-orchestrator"
 
 TARGETS=(
   "$HOME/.claude/skills/$SKILL_NAME"

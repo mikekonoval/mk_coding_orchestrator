@@ -1,5 +1,5 @@
 ---
-name: roadmap-orchestrator
+name: mk-coding-orchestrator
 description: >
   Use when the user wants to work through a project roadmap systematically:
   "работаем по роадмапу", "запусти конвейер", "orchestrate the roadmap",
@@ -10,7 +10,7 @@ description: >
   and fixers — never writes spec/plan/code content inline.
 ---
 
-# Roadmap Orchestrator
+# МК Orchestrator Coding
 
 ## Жёсткий контракт оркестратора
 

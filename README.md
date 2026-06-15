@@ -1,4 +1,4 @@
-# roadmap-orchestrator
+# МК Orchestrator Coding
 
 Агентский скилл, превращающий основную сессию в чистого оркестратора конвейера:
 **roadmap → spec → plan → implementation → code review → docs**
@@ -103,18 +103,18 @@ ROADMAP.md
 ## Установка
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/skill-coding.git
-cd skill-coding
+git clone https://github.com/YOUR_USERNAME/mk_coding_orchestrator.git
+cd mk_coding_orchestrator
 bash install.sh
 ```
 
 `install.sh` идемпотентно создаёт два симлинка:
-- `~/.claude/skills/roadmap-orchestrator` → `<клон>/skills/roadmap-orchestrator`
-- `~/.agents/skills/roadmap-orchestrator` → `<клон>/skills/roadmap-orchestrator`
+- `~/.claude/skills/mk-coding-orchestrator` → `<клон>/skills/mk-coding-orchestrator`
+- `~/.agents/skills/mk-coding-orchestrator` → `<клон>/skills/mk-coding-orchestrator`
 
 Проверьте, что симлинк указывает на **ваш клон** (не скачанный zip):
 ```bash
-ls -la ~/.claude/skills/roadmap-orchestrator
+ls -la ~/.claude/skills/mk-coding-orchestrator
 ```
 
 ## Использование
@@ -149,11 +149,11 @@ ls -la ~/.claude/skills/roadmap-orchestrator
 ## Структура репозитория
 
 ```
-skill-coding/
+mk_coding_orchestrator/
   README.md                      — этот файл
   install.sh                     — установка симлинков
   skills/
-    roadmap-orchestrator/
+    mk-coding-orchestrator/
       SKILL.md                   — входная точка скилла
       references/
         review-protocol.md       — цикл волн, контракт находок, критерий остановки

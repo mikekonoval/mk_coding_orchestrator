@@ -84,7 +84,7 @@ codex exec -s read-only < "$PROMPT" 2>&1
 - `-m <model>` — опционально: `codex exec -s read-only -m gpt-5.5 "..."` для конкретной модели
 - По умолчанию: `gpt-5.5` (верхний ярус, правильно для ревью)
 
-**Проверено локально:** codex-cli 0.137.0-alpha.4, рабочая директория `/Users/mikekonoval/Desktop/skill-coding`.
+**Проверено локально:** codex-cli 0.137.0-alpha.4, рабочая директория `/Users/mikekonoval/Desktop/mk_coding_orchestrator`.
 
 **Ожидаемый вывод:** текст с секциями Находки / Оценка по контракту из `review-protocol.md`.
 
@@ -115,7 +115,7 @@ opencode run --agent plan -m deepseek/deepseek-v4-pro < "$PROMPT" 2>&1
 - `-m deepseek/deepseek-v4-pro` — верхний ярус DeepSeek (правильно для ревью). Для спеки/плана допустим `deepseek/deepseek-reasoner`.
 - Промпт через `< "$PROMPT"` (stdin), как у codex — без shell-подстановки длинного текста.
 
-**Проверено локально:** opencode 1.15.10, DeepSeek API авторизован, агент `plan` read-only, рабочая директория `/Users/mikekonoval/Desktop/skill-coding`. Смоук-тест (`printf ... | opencode run --agent plan -m deepseek/deepseek-chat`) вернул ответ.
+**Проверено локально:** opencode 1.15.10, DeepSeek API авторизован, агент `plan` read-only, рабочая директория `/Users/mikekonoval/Desktop/mk_coding_orchestrator`. Смоук-тест (`printf ... | opencode run --agent plan -m deepseek/deepseek-chat`) вернул ответ.
 
 **Ожидаемый вывод:** строки `→ Read ...` (чтение файлов агентом) + текст находок по контракту из `review-protocol.md`. Парсить только секции находок, строки-логи чтения игнорировать.
 
