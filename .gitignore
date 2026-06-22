@@ -1,7 +1,7 @@
-docs/
+# Ignore everything except the skill itself
+/*
+!/.gitignore
+!/skills/
+
+# ...but never these, even inside the skill
 .DS_Store
-.env
-.env.*
-*.env
-settings.json
-settings.local.json
